@@ -1,0 +1,37 @@
+#include <drivers/driver.h>
+
+Driver::Driver() {
+}
+
+Driver::~Driver() {
+}
+
+void Driver::Activate() {
+}
+
+int Driver::Reset() {
+    return 0;
+}
+
+void Driver::Deactivate() {
+}
+
+DriverManager::DriverManager() {
+    numDrivers = 0;
+}
+
+DriverManager::~DriverManager() {
+}
+
+void DriverManager::AddDriver(Driver* drv) {
+    if (numDrivers < 256) {
+        drivers[numDrivers] = drv;
+        numDrivers++;
+    }
+}
+
+void DriverManager::ActivateAll() {
+    for (int i = 0; i < numDrivers; i++) {
+        drivers[i]->Activate();
+    }
+}
